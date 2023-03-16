@@ -1,4 +1,4 @@
-package com.buckwheat.chat;
+package com.buckwheat.chat.vo;
 
 import lombok.Data;
 

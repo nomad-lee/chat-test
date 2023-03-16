@@ -6,6 +6,8 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Repository;
 
+import com.buckwheat.chat.vo.ChatRoom;
+
 @Repository
 public class ChatRoomRepository {
 	private Map<String, ChatRoom> chatRoomMap;

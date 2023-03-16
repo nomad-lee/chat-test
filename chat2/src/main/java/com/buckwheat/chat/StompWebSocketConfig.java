@@ -6,6 +6,8 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
+import com.buckwheat.chat.common.TeamColor;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -16,7 +18,7 @@ public class StompWebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/stomp/chat")
-                .setAllowedOrigins("http://localhost:8080")
+                .setAllowedOrigins("http://localhost:80")
                 .withSockJS();
     }
 

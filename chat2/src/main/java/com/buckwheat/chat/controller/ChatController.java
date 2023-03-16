@@ -1,4 +1,4 @@
-package com.buckwheat.chat;
+package com.buckwheat.chat.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.buckwheat.chat.ChatRoomRepository;
+import com.buckwheat.chat.common.TeamColor;
+import com.buckwheat.chat.vo.ChatRoom;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
