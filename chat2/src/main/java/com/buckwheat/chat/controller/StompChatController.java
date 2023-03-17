@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buckwheat.chat.common.TeamColor;
-import com.buckwheat.chat.vo.ChatMsg;
 import com.buckwheat.chat.vo.Chatting;
 
 import lombok.RequiredArgsConstructor;

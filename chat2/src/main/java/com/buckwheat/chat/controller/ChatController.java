@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.buckwheat.chat.common.TeamColor;
 import com.buckwheat.chat.service.ChatRoomRepository;
-import com.buckwheat.chat.vo.ChatRoom;
 import com.buckwheat.chat.vo.ChattingRoom;
 
 import lombok.RequiredArgsConstructor;
