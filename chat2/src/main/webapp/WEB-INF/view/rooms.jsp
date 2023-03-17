@@ -10,12 +10,11 @@
 <body>
 	<ul>
 		<c:forEach var="cr" items="${list}">
-			<li><a href="${pageContext.request.contextPath}/chat?roomId=${cr.roomId}">${cr.name}</a></li>
+			<li><a href="${pageContext.request.contextPath}/chat?chattingRoomNo=${cr.chattingRoomNo}">${cr.chattingRoomNo}</a></li>
 		</c:forEach>
 	</ul>
 	
 	<form action="${pageContext.request.contextPath}/rooms" method="post">
-            <input type="text" name="name">
             <input type="submit" value="개설">
     </form>
 </body>

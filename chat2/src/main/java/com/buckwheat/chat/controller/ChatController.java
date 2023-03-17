@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.buckwheat.chat.ChatRoomRepository;
 import com.buckwheat.chat.common.TeamColor;
+import com.buckwheat.chat.service.ChatRoomRepository;
 import com.buckwheat.chat.vo.ChatRoom;
+import com.buckwheat.chat.vo.ChattingRoom;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,24 +54,22 @@ public class ChatController {
 	
 	// 채팅방 개설
     @PostMapping("/rooms")
-    public String create(@RequestParam String name, RedirectAttributes rttr){
-    	log.debug(TeamColor.CSK + name + " 채팅방 개설");
-        rttr.addFlashAttribute("roomName", repository.createChatRoom(name));
+    public String create(RedirectAttributes rttr){
+        rttr.addFlashAttribute("chattingRoomNo", repository.createChatRoom());
         return "redirect:/rooms";
     }
 	
 	// 채팅방 조회
     @GetMapping("/chat")
-    public String getChat(@RequestParam String roomId, Model model){
-    	log.debug(TeamColor.CSK + roomId + "번 채팅방 입장");
-    	log.debug(TeamColor.CSK + roomId + "번 채팅방 정보");
+    public String getChat(@RequestParam String chattingRoomNo, Model model){
+    	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 입장");
+    	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 정보");
     	
-    	ChatRoom chatRoom = repository.findRoomById(roomId);
-    	log.debug(TeamColor.CSK + chatRoom);
+    	ChattingRoom chattingRoom = repository.findRoomById(chattingRoomNo);
+    	log.debug(TeamColor.CSK + chattingRoom);
     	
-        model.addAttribute("chatRoom", chatRoom);
+        model.addAttribute("chatRoom", chattingRoom);
         
         return "chat";
-    }
-	
+    }	
 }

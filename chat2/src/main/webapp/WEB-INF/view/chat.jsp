@@ -11,10 +11,10 @@
 <script src="/webjars/webstomp-client/1.2.6/dist/webstomp.min.js"></script>
 </head>
 <body>
-	<input type="hidden" value="${chatRoom.roomId}" id="roomId">
+	<input type="hidden" value="${chatRoom.chattingRoomNo}" id="chattingRoomNo">
 	<input type="hidden" value="${sessionScope.login}" id="login">
 	<div>
-        <h1 id="roomName">${chatRoom.name}</h1>
+        <h1 id="roomName">${chatRoom.chattingRoomNo}</h1>
         <div>
             <div id="msgArea"></div>
                 <div class="input-group mb-3">
@@ -30,11 +30,11 @@
 <script>
 	$(document).ready(function(){
 		const roomName = $("#roomName").text();
-		const roomId = $("#roomId").val();
+		const chattingRoomNo = $("#chattingRoomNo").val();
 		const username = $("#login").val();
 		
 		console.log("roomName: " + roomName);
-		console.log("roomId: " + roomId);
+		console.log("chattingRoomNo: " + chattingRoomNo);
 		console.log("username: " + username);
 		
 		/* const websocket = new WebSocket("ws://localhost:8080/ws/chat");
@@ -55,11 +55,11 @@
 		stomp.connect({}, function(){
 			
 			console.log("STOMP connected!");
-			//3. send(path, header, message)로 메세지를 보낼 수 있음
-            stomp.send('/pub/chat/enter', JSON.stringify({roomId: roomId, writer: username}));
+			//3. send(path, header, chattingMemo)로 메세지를 보낼 수 있음
+            stomp.send('/pub/chat/enter', JSON.stringify({chattingRoomNo: chattingRoomNo, fromId: username}));
 			
 			//4. subscribe(path, callback)으로 메세지를 받을 수 있음
-            stomp.subscribe("/sub/chat?roomId=" + roomId, function (chat) {
+            stomp.subscribe("/sub/chat?chattingRoomNo=" + chattingRoomNo, function (chat) {
             	console.log("subscribe!!!");
             	console.log("chat");
             	console.log(chat.body);
@@ -67,21 +67,21 @@
                 var content = JSON.parse(chat.body);
             	console.log(content);
 
-                var writer = content.writer;
-                let message = content.message;
+                var fromId = content.fromId;
+                let chattingMemo = content.chattingMemo;
                 console.log("SUBSCRIBE")
-                console.log(writer + ": " + message);
+                console.log(fromId + ": " + chattingMemo);
                 var str = '';
 
-                if(writer === username){
+                if(fromId === username){
                     str = "<div>";
                     str += "<div>";
-                    str += "<b>" + writer + " : " + message + "</b>";
+                    str += "<b>" + fromId + " : " + chattingMemo + "</b>";
                     str += "</div></div>";
                 } else {
                     str = "<div>";
                     str += "<div>";
-                    str += "<b>" + writer + " : " + message + "</b>";
+                    str += "<b>" + fromId + " : " + chattingMemo + "</b>";
                     str += "</div></div>";
                 }
                 
@@ -92,7 +92,7 @@
                 var msg =  $("#msg").val();
                 console.log(username + ":" + msg);
                 
-                stomp.send('/pub/chat/message', JSON.stringify({roomId: roomId, message: msg, writer: username}));
+                stomp.send('/pub/chat/message', JSON.stringify({chattingRoomNo: chattingRoomNo, chattingMemo: msg, fromId: username}));
                 $("#msg").val('');
             });
         });
@@ -115,12 +115,12 @@
 	      	sockJs.send(str);
         }
         
-       function onMessage(msg){
-    	   console.log("onMessage function");
+       function onchattingMemo(msg){
+    	   console.log("onchattingMemo function");
     	   
     	   let data = msg.data;
     	   let sessionId = "유저1"; // 로그인한 척 한 값을 넣고 있음
-    	   let message = null;
+    	   let chattingMemo = null;
     	   let arr = data.split(":");
     	   
     	   for(let i = 0; i < arr.length; i++){
@@ -129,19 +129,19 @@
     	   
     	   let cur_session = username;
     	   sessionId = arr[0];
-    	   message = arr[1];
+    	   chattingMemo = arr[1];
     	   
            if(sessionId == cur_session){
 				var str = "<div class='col-6'>";
 				str += "<div class='alert alert-secondary'>";
-				str += "<b>" + sessionId + " -- " + message + "</b>";
+				str += "<b>" + sessionId + " -- " + chattingMemo + "</b>";
 				str += "</div></div>";
 				
 				$("#msgArea").append(str);
            } else {
 				var str = "<div class='col-6'>";
 				str += "<div class='alert alert-warning'>";
-				str += "<b>" + sessionId + " -- " + message + "</b>";
+				str += "<b>" + sessionId + " -- " + chattingMemo + "</b>";
 				str += "</div></div>";
 				
 				$("#msgArea").append(str);
