@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buckwheat.chat.common.TeamColor;
+import com.buckwheat.chat.service.ChatService;
 import com.buckwheat.chat.vo.Chatting;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StompChatController {
 	@Autowired
 	private final SimpMessagingTemplate template; // 특정 브로커로 메시지 전달
+	private final ChatService chatservice;
 	
 	// Cliet가 send할 수 있는 경로
 	// stompConfig에서 설정한 applicationDestinationPrefixeds와 @MessageMapping 경로 병합
@@ -31,17 +33,24 @@ public class StompChatController {
 		
 		// 핸들러는 없어도 됨
 		log.debug(TeamColor.CSK + "환영 인사!!!");
+		System.out.println("환영 인사!!!");
 		
 		message.setChattingMemo(message.getFromId() + "님이 입장하였습니다.");
 		template.convertAndSend("/sub/chat?chattingRoomNo=" + message.getChattingRoomNo(), message);
 		log.debug(TeamColor.CSK + "message: " + message);
+		System.out.println("message: " + message);
 		
 	}
 	
 	@MessageMapping(value="/chat/message")
 	public void message(Chatting message) {
-		log.debug(TeamColor.CSK + "일반 메시지");
+		log.debug(TeamColor.CSK + "일반 메시지");;
+		System.out.println("일반 메시지");
 		template.convertAndSend("/sub/chat?chattingRoomNo=" + message.getChattingRoomNo(), message);
-		log.debug(TeamColor.CSK + "message: " + message);
+		log.debug(TeamColor.CSK + "message: " + message);;
+		System.out.println("message: " + message);		
+		
+		chatservice.addChattingMsg(message);
+		
 	}
 }

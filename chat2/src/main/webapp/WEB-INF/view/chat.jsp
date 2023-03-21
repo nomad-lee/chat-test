@@ -11,12 +11,18 @@
 <script src="/webjars/webstomp-client/1.2.6/dist/webstomp.min.js"></script>
 </head>
 <body>
-	<input type="hidden" value="${chatRoom.chattingRoomNo}" id="chattingRoomNo">
+	<input type="hidden" value="${chattingRoomNo}" id="chattingRoomNo">
 	<input type="hidden" value="${sessionScope.login}" id="login">
 	<div>
-        <h1 id="roomName">${chatRoom.chattingRoomNo}</h1>
+        <h1 id="roomName">${chattingRoomNo}</h1>
         <div>
-            <div id="msgArea"></div>
+            <div id="msgArea">
+            	<c:forEach var="cl" items="${chatList}">
+                	<div>
+                    	<b>${cl.fromId} : ${cl.chattingMemo}</b>
+                    </div>            	
+            	</c:forEach>
+            	</div>
                 <div class="input-group mb-3">
                     <input type="text" id="msg">
                     <div>
@@ -53,7 +59,6 @@
 		
 		// 2. connection이 이루어지면 실행할 콜백함수
 		stomp.connect({}, function(){
-			
 			console.log("STOMP connected!");
 			//3. send(path, header, chattingMemo)로 메세지를 보낼 수 있음
             stomp.send('/pub/chat/enter', JSON.stringify({chattingRoomNo: chattingRoomNo, fromId: username}));

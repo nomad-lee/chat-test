@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.buckwheat.chat.common.TeamColor;
-import com.buckwheat.chat.service.ChatRoomRepository;
-import com.buckwheat.chat.vo.ChattingRoom;
+import com.buckwheat.chat.service.ChatService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class ChatController {
 	@Autowired
-	private final ChatRoomRepository repository;
+	private final ChatService chatservice;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -46,28 +44,28 @@ public class ChatController {
 		log.debug(TeamColor.CSK + "모든 채팅방 보여주기");
 		ModelAndView mv = new ModelAndView("rooms");
 		
-		mv.addObject("list", repository.findAllRooms());
+		mv.addObject("list", chatservice.findAllRooms());
 		
 		return mv;
 	}
 	
 	// 채팅방 개설
     @PostMapping("/rooms")
-    public String create(RedirectAttributes rttr){
-        rttr.addFlashAttribute("chattingRoomNo", repository.createChatRoom());
+    public String create(){
+    	chatservice.addChattingRoom();
         return "redirect:/rooms";
     }
 	
 	// 채팅방 조회
     @GetMapping("/chat")
-    public String getChat(@RequestParam String chattingRoomNo, Model model){
+    public String getChat(@RequestParam int chattingRoomNo, Model model){
     	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 입장");
-    	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 정보");
-    	
-    	ChattingRoom chattingRoom = repository.findRoomById(chattingRoomNo);
-    	log.debug(TeamColor.CSK + chattingRoom);
-    	
-        model.addAttribute("chatRoom", chattingRoom);
+    	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 정보");    	
+
+		System.out.println(chatservice.getChattingList(chattingRoomNo) + "ddddddddddddd" + chattingRoomNo + ".NO");
+        model.addAttribute("chatList", chatservice.getChattingList(chattingRoomNo));
+        model.addAttribute("chattingRoomNo", chattingRoomNo);
+        
         
         return "chat";
     }	
