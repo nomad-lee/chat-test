@@ -3,7 +3,6 @@ package com.buckwheat.chat.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.buckwheat.chat.common.TeamColor;
@@ -13,7 +12,6 @@ import com.buckwheat.chat.vo.Chatting;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Controller
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -49,7 +47,8 @@ public class StompChatController {
 		template.convertAndSend("/sub/chat?chattingRoomNo=" + message.getChattingRoomNo(), message);
 		log.debug(TeamColor.CSK + "message: " + message);;
 		System.out.println("message: " + message);		
-		
+
+		//db에 저장
 		chatservice.addChattingMsg(message);
 		
 	}

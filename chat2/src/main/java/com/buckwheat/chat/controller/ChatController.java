@@ -60,7 +60,7 @@ public class ChatController {
     @GetMapping("/chat")
     public String getChat(@RequestParam int chattingRoomNo, Model model){
     	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 입장");
-    	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 정보");    	
+    	log.debug(TeamColor.CSK + chattingRoomNo + "번 채팅방 정보");
 
 		System.out.println(chatservice.getChattingList(chattingRoomNo) + "ddddddddddddd" + chattingRoomNo + ".NO");
         model.addAttribute("chatList", chatservice.getChattingList(chattingRoomNo));
