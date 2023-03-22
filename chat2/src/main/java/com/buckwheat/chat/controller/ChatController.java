@@ -55,6 +55,13 @@ public class ChatController {
     	chatservice.addChattingRoom();
         return "redirect:/rooms";
     }
+    
+    // 임시 chat
+	@GetMapping("/chat2")
+	public String chat2() {
+		
+		return "chat2";
+	}
 	
 	// 채팅방 조회
     @GetMapping("/chat")
