@@ -22,7 +22,7 @@
 			chatting_room_no chattingRoomNo
 			, chatting_no chattingNo
 			, chatting_memo chattingMemo
-			, createdate
+			, DATE_FORMAT(createdate,'%Y-%m-%d %H:%i:%s') createdate
 			, from_id fromId
 		FROM chatting
 		WHERE chatting_room_no = #{chattingRoomNo}

@@ -1,5 +1,8 @@
 package com.buckwheat.chat.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -30,23 +33,23 @@ public class StompChatController {
 		// "/sub/chat/room/[roomId]로 메시지가 전송됨 - 메시지가 전송되는 값
 		
 		// 핸들러는 없어도 됨
-		log.debug(TeamColor.CSK + "환영 인사!!!");
 		System.out.println("환영 인사!!!");
 		
 		message.setChattingMemo(message.getFromId() + "님이 입장하였습니다.");
 		template.convertAndSend("/sub/chat?chattingRoomNo=" + message.getChattingRoomNo(), message);
-		log.debug(TeamColor.CSK + "message: " + message);
 		System.out.println("message: " + message);
-		
 	}
 	
 	@MessageMapping(value="/chat/message")
 	public void message(Chatting message) {
-		log.debug(TeamColor.CSK + "일반 메시지");;
+		LocalDateTime dateTime = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		
 		System.out.println("일반 메시지");
+		message.setCreatedate((dateTime.format(formatter)));
 		template.convertAndSend("/sub/chat?chattingRoomNo=" + message.getChattingRoomNo(), message);
-		log.debug(TeamColor.CSK + "message: " + message);;
-		System.out.println("message: " + message);		
+		System.out.println("message: " + message);	
+		System.out.println(dateTime.format(formatter) + "dateTime");	
 
 		//db에 저장
 		chatservice.addChattingMsg(message);
