@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="/login">
+	<form method="post" action="${pageContext.request.contextPath}/login">
 		<input type="text" name="name">
 		<input type="submit" value="이름 입력">
 	</form>

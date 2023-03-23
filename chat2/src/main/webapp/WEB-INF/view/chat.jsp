@@ -7,34 +7,34 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+  <link rel="icon" href="/test/assets/images/favicon-32x32.png" type="image/png" />
   <!--plugins-->
-  <link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-  <link href="../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-  <link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+  <link href="/test/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+  <link href="/test/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
+  <link href="/test/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
   <!-- Bootstrap CSS -->
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="assets/css/bootstrap-extended.css" rel="stylesheet" />
-  <link href="assets/css/style.css" rel="stylesheet" />
-  <link href="assets/css/icons.css" rel="stylesheet">
+  <link href="/test/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/test/assets/css/bootstrap-extended.css" rel="stylesheet" />
+  <link href="/test/assets/css/style.css" rel="stylesheet" />
+  <link href="/test/assets/css/icons.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
   <!-- loader-->
-	<link href="assets/css/pace.min.css" rel="stylesheet" />
+	<link href="/test/assets/css/pace.min.css" rel="stylesheet" />
 	
 
 
   <!--Theme Styles-->
-  <link href="assets/css/dark-theme.css" rel="stylesheet" />
-  <link href="assets/css/light-theme.css" rel="stylesheet" />
-  <link href="assets/css/semi-dark.css" rel="stylesheet" />
-  <link href="assets/css/header-colors.css" rel="stylesheet" />
+  <link href="/test/assets/css/dark-theme.css" rel="stylesheet" />
+  <link href="/test/assets/css/light-theme.css" rel="stylesheet" />
+  <link href="/test/assets/css/semi-dark.css" rel="stylesheet" />
+  <link href="/test/assets/css/header-colors.css" rel="stylesheet" />
 
   <title>chat</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
-  <script src="/webjars/webstomp-client/1.2.6/dist/webstomp.min.js"></script>
+  <script src="/test/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
+  <script src="/test/webjars/webstomp-client/1.2.6/dist/webstomp.min.js"></script>
 </head>
 
 <body>
@@ -56,7 +56,7 @@
 						<div class="chat-sidebar-header">
 							<div class="d-flex align-items-center">
 								<div class="chat-user-online">
-									<img src="assets/images/avatars/avatar-1.png" width="45" height="45" class="rounded-circle" alt="" />
+									<img src="/test/assets/images/avatars/avatar-1.png" width="45" height="45" class="rounded-circle" alt="" />
 								</div>
 								<div class="flex-grow-1 ms-2">
 									<p class="mb-0">Rachel Zane</p>
@@ -92,15 +92,14 @@
 												<div class="dropdown-divider"></div>	<a class="dropdown-item" href="#">Show Favorites</a>
 											</div>
 											<a href="#" class="btn btn-white btn-sm radius-30" style="float:right;"><i class='bx bxs-edit me-2'></i>New Chat</a>
-										</div>
-											
+										</div>											
 									</div>
 									<div class="chat-list">
 										<div class="list-group list-group-flush">
 											<a href="javascript:;" class="list-group-item">
 												<div class="d-flex">
 													<div class="chat-user-online">
-														<img src="assets/images/avatars/avatar-2.png" width="42" height="42" class="rounded-circle" alt="" />
+														<img src="/test/assets/images/avatars/avatar-2.png" width="42" height="42" class="rounded-circle" alt="" />
 													</div>
 													<div class="flex-grow-1 ms-2">
 														<h6 class="mb-0 chat-title">Louis Litt</h6>
@@ -112,7 +111,7 @@
 											<a href="javascript:;" class="list-group-item active">
 												<div class="d-flex">
 													<div class="chat-user-online">
-														<img src="assets/images/avatars/avatar-3.png" width="42" height="42" class="rounded-circle" alt="" />
+														<img src="/test/assets/images/avatars/avatar-3.png" width="42" height="42" class="rounded-circle" alt="" />
 													</div>
 													<div class="flex-grow-1 ms-2">
 														<h6 class="mb-0 chat-title">Harvey Specter</h6>
@@ -126,7 +125,7 @@
 								</div>
 							</div>
 						</div>
-					</div>					
+					</div>
 					<div class="chat-header d-flex align-items-center">
 						<div class="chat-toggle-btn"><i class='bx bx-menu-alt-left'></i>
 						</div>
@@ -136,17 +135,17 @@
 						<div class="chat-top-header-menu ms-auto">
 							<a href="javascript:;"><i class='bx bx-user-plus'></i></a>
 						</div>
-					</div>					
+					</div>
 					
 					<!-- chat -->					
 					<input type="hidden" value="${chattingRoomNo}" id="chattingRoomNo">
 					<input type="hidden" value="${sessionScope.login}" id="login">
-					<div class="chat-content" id="msgArea">						
+					<div class="chat-content" id="msgArea">
             			<c:forEach var="cl" items="${chatList}">
 							<c:if test="${sessionScope.login != cl.fromId}">						
 								<div class="chat-content-leftside">
 									<div class="d-flex">
-										<img src="assets/images/avatars/avatar-3.png" width="48" height="48" class="rounded-circle" alt="" />
+										<img src="/test/assets/images/avatars/avatar-3.png" width="48" height="48" class="rounded-circle" alt="" />
 										<div class="flex-grow-1 ms-2">
 											<p class="mb-0 chat-time">${cl.fromId}, ${cl.createdate}</p>
 											<p class="chat-left-msg">${cl.chattingMemo}</p>
@@ -208,7 +207,7 @@
 		console.log(websocket); */
 		// console.log(websocket);
 		
-		let sockJs = new SockJS("/stomp/chat"); // registerStompEndpoints - registry.addEndpoint("/stomp/chat")
+		let sockJs = new SockJS("/test/stomp/chat"); // registerStompEndpoints - registry.addEndpoint("/stomp/chat")
 		// var sockJs = new SockJS("http://localhost:8080/ws/chat", null, {transports: ["websocket", "xhr-streaming", "xhr-polling"]});
 		console.log("sockJs");
 		console.log(sockJs);
@@ -227,10 +226,10 @@
             stomp.subscribe("/sub/chat?chattingRoomNo=" + chattingRoomNo, function (chat) {
             	console.log("subscribe!!!");
             	console.log("chat");
-            	console.log(chat.body + "chat.body");
+            	console.log(chat.body);
             	
                 var content = JSON.parse(chat.body);
-            	console.log(content + "content");
+            	console.log(content);
 
                 var fromId = content.fromId;
                 let chattingMemo = content.chattingMemo;
@@ -271,18 +270,15 @@
   </script>
 
   <!-- Bootstrap bundle JS -->
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/test/assets/js/bootstrap.bundle.min.js"></script>
   <!--plugins-->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-  <script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-  <script src="../assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
-  <script src="assets/js/pace.min.js"></script>
+  <script src="/test/assets/js/jquery.min.js"></script>
+  <script src="/test/assets/plugins/simplebar/js/simplebar.min.js"></script>
+  <script src="/test/assets/plugins/metismenu/js/metisMenu.min.js"></script>
+  <script src="/test/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+  <script src="/test/assets/js/pace.min.js"></script>
   <!--app-->
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/app-chat-box.js"></script>
-
-
+  <script src="/test/assets/js/app.js"></script>
+  <script src="/test/assets/js/app-chat-box.js"></script>
 </body>
-
 </html>

@@ -3,7 +3,7 @@
         <aside class="sidebar-wrapper" data-simplebar="true">
           <div class="sidebar-header">
 	            <div>
-	              <img src="/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+	              <img src="/test/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
 	            </div>
 	            <a href="${pageContext.request.contextPath}/employee/emp/main">
 	              <h4 class="logo-text">Snacked</h4>

@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StompChatController {
 	@Autowired
 	private final SimpMessagingTemplate template; // 특정 브로커로 메시지 전달
-	private final ChatService chatservice;
+	private final ChatService chatService;
 	
 	// Cliet가 send할 수 있는 경로
 	// stompConfig에서 설정한 applicationDestinationPrefixeds와 @MessageMapping 경로 병합
@@ -52,7 +52,7 @@ public class StompChatController {
 		System.out.println(dateTime.format(formatter) + "dateTime");	
 
 		//db에 저장
-		chatservice.addChattingMsg(message);
+		chatService.addChattingMsg(message);
 		
 	}
 }
