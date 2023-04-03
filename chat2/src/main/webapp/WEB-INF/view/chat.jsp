@@ -96,30 +96,32 @@
 									</div>
 									<div class="chat-list">
 										<div class="list-group list-group-flush">
-											<a href="javascript:;" class="list-group-item">
-												<div class="d-flex">
-													<div class="chat-user-online">
-														<img src="/test/assets/images/avatars/avatar-2.png" width="42" height="42" class="rounded-circle" alt="" />
+            								<c:forEach var="cl" items="${chatList}">
+												<a href="javascript:;" class="list-group-item">
+													<div class="d-flex">
+														<div class="chat-user-online">
+															<img src="/test/assets/images/avatars/avatar-2.png" width="42" height="42" class="rounded-circle" alt="" />
+														</div>
+														<div class="flex-grow-1 ms-2">
+															<h6 class="mb-0 chat-title">Louis Litt</h6>
+															<p class="mb-0 chat-msg">You just got LITT up, Mike.</p>
+														</div>
+														<div class="chat-time">9:51 AM</div>
 													</div>
-													<div class="flex-grow-1 ms-2">
-														<h6 class="mb-0 chat-title">Louis Litt</h6>
-														<p class="mb-0 chat-msg">You just got LITT up, Mike.</p>
+												</a>
+												<a href="javascript:;" class="list-group-item active">
+													<div class="d-flex">
+														<div class="chat-user-online">
+															<img src="/test/assets/images/avatars/avatar-3.png" width="42" height="42" class="rounded-circle" alt="" />
+														</div>
+														<div class="flex-grow-1 ms-2">
+															<h6 class="mb-0 chat-title">Harvey Specter</h6>
+															<p class="mb-0 chat-msg">Wrong. You take the gun....</p>
+														</div>
+														<div class="chat-time">4:32 PM</div>
 													</div>
-													<div class="chat-time">9:51 AM</div>
-												</div>
-											</a>
-											<a href="javascript:;" class="list-group-item active">
-												<div class="d-flex">
-													<div class="chat-user-online">
-														<img src="/test/assets/images/avatars/avatar-3.png" width="42" height="42" class="rounded-circle" alt="" />
-													</div>
-													<div class="flex-grow-1 ms-2">
-														<h6 class="mb-0 chat-title">Harvey Specter</h6>
-														<p class="mb-0 chat-msg">Wrong. You take the gun....</p>
-													</div>
-													<div class="chat-time">4:32 PM</div>
-												</div>
-											</a>
+												</a>											
+											</c:forEach>
 										</div>
 									</div>
 								</div>
